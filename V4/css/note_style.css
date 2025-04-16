@@ -1,0 +1,206 @@
+/* General Body Styles */
+body {
+    background-color: #fff0f5;
+    /* Light pink background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    /* Dark text for contrast */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #ffb6c1;
+    /* Light pink navbar */
+    color: #fff;
+    padding: 10px 20px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.navbar .navbar-brand {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.navbar .navbar-nav .nav-item .nav-link {
+    color: white;
+}
+
+/* Note-Taking Section */
+.container {
+    margin-top: 180px;
+    /* Adjusted to ensure the content doesn't overlap with navbar */
+    width: 100%;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 32px;
+    color: #d63384;
+    /* Dark pink title color */
+    font-weight: bold;
+    margin: 40px 0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    /* Adds space between form elements */
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #d63384;
+    /* Dark pink label color */
+}
+
+.form-control {
+    border: 2px solid #ffc0cb;
+    /* Light pink border */
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.form-control:focus {
+    border-color: #ff1493;
+    /* Darker pink when focused */
+    outline: none;
+}
+
+.btn-pink {
+    background-color: #ff69b4;
+    /* Light pink background */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    width: 100%;
+    max-width: 300px;
+    display: block;
+    margin: 0 auto;
+}
+
+.btn-pink:hover {
+    background-color: #ff1493;
+    /* Darker pink on hover */
+    color: white;
+}
+
+/* Search Bar */
+#searchNotes {
+    border-radius: 5px;
+    border: 2px solid #ffc0cb;
+    /* Light pink border */
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 20px;
+    max-width: 500px;
+    display: block;
+    margin: 20px auto;
+}
+
+#searchNotes:focus {
+    border-color: #ff1493;
+    /* Darker pink when focused */
+    outline: none;
+}
+
+/* Saved Notes Section */
+.card {
+    border-radius: 10px;
+    border: 2px solid #ffc0cb;
+    /* Light pink border */
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+.btn.btn-primary {
+    background-color: #ff69b4;
+    /* Light pink button */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    margin: 5px;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 200px;
+    height: 40px;
+    /* center the button */
+    margin: 0 auto;
+    display: block;
+    position: relative;
+
+}
+
+.card-title {
+    color: #d63384;
+    /* Dark pink title color */
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    font-size: 16px;
+    color: #333;
+    /* Dark text for readability */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+/* Media Queries for responsive design */
+@media (max-width: 768px) {
+    .container {
+        margin-top: 150px;
+        /* Adjusted top margin for smaller screens */
+        padding: 0 10px;
+    }
+
+    .card {
+        margin-bottom: 15px;
+    }
+
+    .btn-pink {
+        max-width: 100%;
+    }
+
+    #searchNotes {
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Calendar</title>
+    <!-- Adding Bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/calendar.css" />
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-pink">
+        <a class="navbar-brand" href="../html/index.html">Note Taking Website</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="../html/note_take.html">Note Taking</a></li>
+                <li class="nav-item"><a class="nav-link" href="../html/calendar.html">Calendar</a></li>
+                <li class="nav-item"><a class="nav-link" href="../html/habits.html">Habits</a></li>
+                <li class="nav-item"><a class="nav-link" href="../php/logout.php">Log out</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="calendar-container">
+        <header class="calendar-header">
+            <h1>April 2025</h1>
+            <div class="nav-buttons">
+                <button>&lt;</button>
+                <button>&gt;</button>
+            </div>
+        </header>
+
+        <div class="calendar-grid">
+            <div class="day-name">Sun</div>
+            <div class="day-name">Mon</div>
+            <div class="day-name">Tue</div>
+            <div class="day-name">Wed</div>
+            <div class="day-name">Thu</div>
+            <div class="day-name">Fri</div>
+            <div class="day-name">Sat</div>
+
+            <!-- Blank cells for alignment -->
+            <div class="day-cell empty"></div>
+            <div class="day-cell empty"></div>
+
+            <!-- Actual days (1 - 30 example for April 2025) -->
+            <div class="day-cell">1</div>
+            <div class="day-cell">2</div>
+            <div class="day-cell">3</div>
+            <div class="day-cell">4</div>
+            <div class="day-cell">5</div>
+            <div class="day-cell">6</div>
+            <div class="day-cell">7</div>
+            <div class="day-cell">8</div>
+            <div class="day-cell">9</div>
+            <div class="day-cell">10</div>
+            <div class="day-cell">11</div>
+            <div class="day-cell">12</div>
+            <div class="day-cell">13</div>
+            <div class="day-cell">14</div>
+            <div class="day-cell">15</div>
+            <div class="day-cell">16</div>
+            <div class="day-cell">17</div>
+            <div class="day-cell">18</div>
+            <div class="day-cell">19</div>
+            <div class="day-cell">20</div>
+            <div class="day-cell">21</div>
+            <div class="day-cell">22</div>
+            <div class="day-cell">23</div>
+            <div class="day-cell">24</div>
+            <div class="day-cell">25</div>
+            <div class="day-cell">26</div>
+            <div class="day-cell">27</div>
+            <div class="day-cell">28</div>
+            <div class="day-cell">29</div>
+            <div class="day-cell">30</div>
+        </div>
+    </div>
+
+    <!-- Adding Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

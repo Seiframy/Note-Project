@@ -1,0 +1,191 @@
+/* Base Layout */
+body {
+    background-color: #fff0f5;
+    /* Light pink background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Card Container */
+.pink-card {
+    background-color: #ffffff;
+    border: 2px solid #ffc0cb;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 550px;
+    width: 100%;
+    margin: 80px auto;
+    position: relative;
+
+}
+
+/* Card Title */
+.card-title {
+    color: #d63384;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    text-align: center;
+    text-decoration: underline;
+    position: relative;
+}
+
+/* Add a cute underline effect */
+.card-title::after {
+
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: #ff69b4;
+}
+
+/* Form Labels */
+label {
+    font-weight: bold;
+    color: #d63384;
+}
+
+/* Input Fields */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"] {
+    border: 2px solid #ffc0cb;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover + Focus Effects on Inputs */
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="email"]:hover,
+input[type="tel"]:hover,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
+    border-color: #ff69b4;
+    box-shadow: 0 0 8px rgba(255, 105, 180, 0.3);
+}
+
+/* Placeholder Styling */
+input::placeholder {
+    color: #ff9acb;
+    font-style: italic;
+}
+
+/* Pink Button Style */
+.btn-pink {
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Hover Effect */
+.btn-pink:hover {
+    background-color: #ff1493;
+    transform: scale(1.03);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Active Click Effect */
+.btn-pink:active {
+    transform: scale(0.97);
+    background-color: #e60073;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Fancy ::before shimmer effect */
+.btn-pink::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: skewX(-20deg);
+    z-index: 0;
+    transition: left 0.5s;
+}
+
+.btn-pink:hover::before {
+    left: 200%;
+}
+
+/* Smooth transition for all elements */
+* {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .pink-card {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .card-title {
+        font-size: 24px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="tel"] {
+        padding: 8px;
+    }
+
+    .btn-pink {
+        padding: 8px 16px;
+        font-size: 16px;
+    }
+}
+
+/* Responsive Design for larger screens */
+@media (min-width: 768px) {
+    .pink-card {
+        max-width: 600px;
+        padding: 40px;
+    }
+
+    .card-title {
+        font-size: 32px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="tel"] {
+        padding: 12px;
+    }
+
+    .btn-pink {
+        padding: 12px 24px;
+        font-size: 18px;
+    }
+}
+
+.errorMessage {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
