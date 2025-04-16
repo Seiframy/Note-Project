@@ -1,6 +1,6 @@
 <?php
 // Include your DB connection
-require_once "dp.php"; // Make sure this file sets up $conn correctly using PDO
+require_once "dp.php"; // Make sure this file sets up $pdo correctly using PDO
 
 // Debug mode
 ini_set('display_errors', 1);
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_note"])) {
 
     if (!empty($title) && !empty($content)) {
         try {
-            $stmt = $conn->prepare("INSERT INTO notes_taking (title, content) VALUES (:title, :content)");
+            $stmt = $pdo->prepare("INSERT INTO notes_taking (title, content) VALUES (:title, :content)");
             $stmt->bindParam(':title', $title);
             $stmt->bindParam(':content', $content);
 
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_note"])) {
 
 // Fetch all notes
 try {
-    $stmt = $conn->prepare("SELECT * FROM notes_taking ORDER BY created_at DESC");
+    $stmt = $pdo->prepare("SELECT * FROM notes_taking ORDER BY created_at DESC");
     $stmt->execute();
     $notes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_note"])) {
 
     if (!empty($id) && !empty($title) && !empty($content)) {
         try {
-            $stmt = $conn->prepare("UPDATE notes_taking SET title = :title, content = :content WHERE id = :id");
+            $stmt = $pdo->prepare("UPDATE notes_taking SET title = :title, content = :content WHERE id = :id");
             $stmt->bindParam(':title', $title);
             $stmt->bindParam(':content', $content);
             $stmt->bindParam(':id', $id);
@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_note"])) {
 
     if (!empty($id)) {
         try {
-            $stmt = $conn->prepare("DELETE FROM notes_taking WHERE id = :id");
+            $stmt = $pdo->prepare("DELETE FROM notes_taking WHERE id = :id");
             $stmt->bindParam(':id', $id);
 
             if ($stmt->execute()) {
