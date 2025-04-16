@@ -6,7 +6,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 if (isset($data['id'])) {
     $noteId = intval($data['id']);
-    $stmt = $conn->prepare("DELETE FROM notes WHERE id = ?");
+    $stmt = $pdo->prepare("DELETE FROM notes WHERE id = ?");
     $stmt->bind_param("i", $noteId);
 
     if ($stmt->execute()) {
@@ -20,5 +20,5 @@ if (isset($data['id'])) {
     echo json_encode(['success' => false, 'error' => 'Invalid request']);
 }
 
-$conn->close();
+$pdo->close();
 ?>
