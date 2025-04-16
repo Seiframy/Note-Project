@@ -26,8 +26,40 @@ document.addEventListener('DOMContentLoaded', function () {
             cardText.classList.add('card-text');
             cardText.textContent = note.content;
 
+
+
             cardBody.appendChild(cardTitle);
             cardBody.appendChild(cardText);
+
+            // Add Edit and Delete buttons
+            const editBtn = document.createElement('button');
+            editBtn.classList.add('btn', 'btn-sm', 'btn-info', 'mr-2');
+            editBtn.textContent = 'Edit';
+            editBtn.addEventListener('click', () => {
+                // Fill modal with note data
+                document.getElementById('editId').value = note.id;
+                document.getElementById('editTitle').value = note.title;
+                document.getElementById('editContent').value = note.content;
+                $('#editNoteModal').modal('show');
+            });
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.classList.add('btn', 'btn-sm', 'btn-danger');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.addEventListener('click', () => {
+                if (confirm('Are you sure you want to delete this note?')) {
+                    deleteNote(note.id);
+                }
+            });
+
+            const buttonGroup = document.createElement('div');
+            buttonGroup.classList.add('mt-3');
+            buttonGroup.appendChild(editBtn);
+            buttonGroup.appendChild(deleteBtn);
+
+            cardBody.appendChild(buttonGroup);
+
+
             card.appendChild(cardBody);
 
             notesContainer.appendChild(card);
@@ -67,4 +99,27 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Error fetching notes:', error);
             });
     }
+
+    function deleteNote(noteId) {
+        fetch('../php/delete_note.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: noteId })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Note deleted successfully.');
+                    fetchNotes(''); // Refresh note list
+                } else {
+                    alert('Failed to delete the note.');
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting note:', error);
+            });
+    }
+
 });
