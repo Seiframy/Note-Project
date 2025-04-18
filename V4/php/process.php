@@ -5,6 +5,11 @@ ini_set('display_errors', 1);
 header("Content-Type: application/json");
 require_once('dp.php');
 
+// START SESSION
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $json = file_get_contents("php://input");
 $data = json_decode($json, true);
 
@@ -29,6 +34,7 @@ if ($data) {
     }
 
     try {
+        // Check if user already exists
         $stmt = $pdo->prepare("SELECT COUNT(*) FROM users_new WHERE username = ?");
         $stmt->execute([$username]);
         $count = $stmt->fetchColumn();
@@ -38,11 +44,21 @@ if ($data) {
             exit;
         }
 
+        // Insert new user
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $pdo->prepare("INSERT INTO users_new (username, password) VALUES (?, ?)");
         $stmt->execute([$username, $hashedPassword]);
 
-        echo json_encode(["success" => true, "message" => "User $username registered successfully."]);
+        // Log in the user
+        $_SESSION['user_id'] = $pdo->lastInsertId();
+        $_SESSION['user'] = $username;
+
+        // Single response with redirect
+        echo json_encode([
+            "success" => true,
+            "message" => "Account created!",
+            "redirect" => "php/note_take.php"
+        ]);
     } catch (PDOException $e) {
         echo json_encode(["success" => false, "message" => "Database error: " . $e->getMessage()]);
     }

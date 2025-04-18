@@ -20,3 +20,7 @@ Raw input: {"username":"koo","password":"2"}
 Login failed for user: koo
 Raw input: {"username":"koo","password":"1"}
 Login success for user: koo
+Raw input: {"username":"koo","password":"1"}
+Login success for user: koo
+Raw input: {"username":"koo","password":"1"}
+Login success for user: koo
