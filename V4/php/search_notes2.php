@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["search_notes"])) {
         <?php endif; ?>
 
         <br>
-        <a href="../html/note_take.html" class="btn btn-secondary">Back to Notes!</a>
+        <a href="../php/note_take.php" class="btn btn-secondary">Back to Notes!</a>
     </div>
 
     <!-- Bootstrap JS -->

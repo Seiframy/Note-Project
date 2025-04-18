@@ -179,3 +179,8 @@ a:hover {
     padding: 2px 6px;
     font-size: 0.7rem;
 }
+
+.card.pink-card {
+    background-color: #fff0f6;
+    border: 1px solid #f7a8c4;
+}

@@ -64,7 +64,7 @@ $firstDayOfMonth = date('w', strtotime("$year-$month-01"));
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="../html/note_take.html">Note Taking</a>
+                    <a class="nav-link" href="../php/note_take.php">Note Taking</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../html/calendar.html">Calendar</a>
