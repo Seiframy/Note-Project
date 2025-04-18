@@ -24,13 +24,15 @@ $password = $data['password'] ?? '';
 
 try {
     $stmt = $pdo->prepare("SELECT * FROM users_new WHERE username = ?");
-    $stmt->execute([$username]);  
+    $stmt->execute([$username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['password'])) {
         // Set cookie and session
         setcookie("user", $username, time() + 3600, "/"); // 1 hour
-        $_SESSION['user'] = $username;
+        $_SESSION['user_id'] = $user['id']; // Store the actual user ID
+        $_SESSION['user'] = $username; // Optional, keep for reference
+
 
         file_put_contents("debug_log.txt", "Login success for user: $username\n", FILE_APPEND);
         echo json_encode(["success" => true]);

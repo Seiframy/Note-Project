@@ -12,14 +12,9 @@ document.getElementById("registration_").addEventListener("submit", function (e)
     }
 
     const formData = {
-        first_name: document.getElementById("first_name").value,
-        last_name: document.getElementById("last_name").value,
         username: document.getElementById("username").value,
         password: password,
         confirm_password: confirmPassword,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        location: document.getElementById("location").value,
     };
 
     // Send to PHP backend

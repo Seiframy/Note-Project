@@ -1,11 +1,22 @@
 <?php
-require_once "../php/dp.php";
+
+require_once "session_check.php";
+require_once "dp.php";
+
+
+$user_id = $_SESSION['user_id'];
+
+
+
 
 // Fetch all events from the DB
 $events = [];
 
 try {
-    $stmt = $pdo->query("SELECT * FROM calendar_events");
+
+    $stmt = $pdo->prepare("SELECT * FROM calendar_events WHERE user_id = :user_id");
+    $stmt->execute(['user_id' => $_SESSION['user_id']]);
+
     $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo "Error fetching events: " . $e->getMessage();

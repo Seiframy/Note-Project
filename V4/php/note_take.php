@@ -1,5 +1,10 @@
 <?php
-require_once "../php/dp.php";
+require_once "session_check.php";
+require_once "dp.php";
+
+
+$user_id = $_SESSION['user_id'];
+
 
 // Handle note creation (in this file, not redirecting)
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["create_note"])) {
@@ -8,7 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["create_note"])) {
 
     if (!empty($title) && !empty($content)) {
         try {
-            $stmt = $pdo->prepare("INSERT INTO notes_taking (title, content) VALUES (:title, :content)");
+            $stmt = $pdo->prepare("INSERT INTO notes_taking (title, content, user_id) VALUES (:title, :content, :user_id)");
+            $stmt->bindParam(':user_id', $_SESSION['user_id']); // Assuming user_id is stored in session
             $stmt->bindParam(':title', $title);
             $stmt->bindParam(':content', $content);
             $stmt->execute();
@@ -23,7 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["create_note"])) {
 // Fetch all notes for the right column
 $notes = [];
 try {
-    $stmt = $pdo->query("SELECT * FROM notes_taking ORDER BY created_at DESC");
+    $stmt = $pdo->prepare("SELECT * FROM notes_taking WHERE user_id = :user_id ORDER BY created_at DESC");
+    $stmt->execute(['user_id' => $_SESSION['user_id']]);
+
     $notes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo "<p class='text-danger'>Error loading notes: " . $e->getMessage() . "</p>";

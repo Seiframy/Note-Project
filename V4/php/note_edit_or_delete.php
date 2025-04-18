@@ -1,5 +1,7 @@
 <?php
+require_once "session_check.php";
 require_once "dp.php";
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 

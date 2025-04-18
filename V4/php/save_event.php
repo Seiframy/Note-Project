@@ -2,6 +2,8 @@
 // Include your database connection
 require_once "dp.php";
 
+session_start(); // Make sure this is at the top
+
 // Show errors while testing (you can turn these off later)
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -17,7 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_event"])) {
     if (!empty($title) && $day >= 1 && $day <= 30) {
         try {
             // Prepare SQL query
-            $stmt = $pdo->prepare("INSERT INTO calendar_events (title, day) VALUES (:title, :day)");
+            $stmt = $pdo->prepare("INSERT INTO calendar_events (title, day, user_id) VALUES (:title, :day, :user_id)");
+            $stmt->bindParam(':user_id', $_SESSION['user_id']); // Assuming you have user_id in session
             $stmt->bindParam(':title', $title);
             $stmt->bindParam(':day', $day);
 
