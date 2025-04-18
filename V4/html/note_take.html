@@ -40,8 +40,7 @@
         <form action="../php/notes.php" method="post">
             <div class="form-group">
                 <label for="noteTitle">Note Title</label>
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter note title"
-                    required>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter note title" required>
             </div>
             <div class="form-group">
                 <label for="noteContent">Note Content</label>
@@ -53,46 +52,17 @@
 
         <br></br>
 
-        <!-- Edit Note Modal -->
-        <div class="modal fade" id="editNoteModal" tabindex="-1" role="dialog" aria-labelledby="editNoteModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editNoteModalLabel">Edit Note</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="notes.php" method="post">
-                            <input type="hidden" name="id" id="editId">
-                            <div class="form-group">
-                                <label for="editTitle">Title:</label>
-                                <input type="text" class="form-control" name="title" id="editTitle" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="editContent">Content:</label>
-                                <textarea class="form-control" name="content" id="editContent" rows="5"
-                                    required></textarea>
-                            </div>
-                            <button type="submit" name="update_note" class="btn btn-primary">Save Changes</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
         <hr>
-
-        <!-- Search bar for notes -->
+        <!-- Search Notes form -->
         <h3 class="text-center">Search Your Notes</h3>
-        <input type="text" id="searchNotes" class="form-control" placeholder="Search your notes..." />
+        <form action="../php/search_notes2.php" method="POST" class="mb-3">
+            <input type="text" name="search_query" class="form-control" placeholder="Search your notes..." required />
+            <button type="submit" name="search_notes" class="btn btn-info mt-2">Search</button>
+        </form>
 
-        <!-- Display saved notes -->
-        <div id="notesContainer" class="mt-4"></div>
     </div>
-
     <!-- Link to external JavaScript file -->
     <script src="../js/note_script.js"></script>
 </body>

@@ -32,64 +32,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_note"])) {
     }
 }
 
-// Fetch all notes
-try {
-    $stmt = $pdo->prepare("SELECT * FROM notes_taking ORDER BY created_at DESC");
-    $stmt->execute();
-    $notes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    echo "DB Error (fetch): " . $e->getMessage();
-}
+// Handle Search request
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["search_notes"])) {
+    $search_query = $_POST["search_query"];
 
-// Update note
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_note"])) {
-    echo "Update note request received.<br>";
-
-    $id = $_POST["id"] ?? null;
-    $title = $_POST["title"] ?? null;
-    $content = $_POST["content"] ?? null;
-
-    if (!empty($id) && !empty($title) && !empty($content)) {
-        try {
-            $stmt = $pdo->prepare("UPDATE notes_taking SET title = :title, content = :content WHERE id = :id");
-            $stmt->bindParam(':title', $title);
-            $stmt->bindParam(':content', $content);
-            $stmt->bindParam(':id', $id);
-
-            if ($stmt->execute()) {
-                echo "<script>alert('Note updated successfully!');</script>";
-            } else {
-                echo "<script>alert('Error updating note.');</script>";
-            }
-        } catch (PDOException $e) {
-            echo "DB Error (update): " . $e->getMessage();
-        }
-    } else {
-        echo "<script>alert('Please fill in all fields.');</script>";
+    try {
+        $stmt = $pdo->prepare("SELECT * FROM notes_taking WHERE title LIKE :query OR content LIKE :query ORDER BY created_at DESC");
+        $stmt->execute(['query' => "%$search_query%"]);
+        $notes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        echo "DB Error (search): " . $e->getMessage();
+        $notes = [];
     }
 }
 
-// Delete note
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_note"])) {
-    echo "Delete note request received.<br>";
-
-    $id = $_POST["id"] ?? null;
-
-    if (!empty($id)) {
-        try {
-            $stmt = $pdo->prepare("DELETE FROM notes_taking WHERE id = :id");
-            $stmt->bindParam(':id', $id);
-
-            if ($stmt->execute()) {
-                echo "<script>alert('Note deleted successfully!');</script>";
-            } else {
-                echo "<script>alert('Error deleting note.');</script>";
-            }
-        } catch (PDOException $e) {
-            echo "DB Error (delete): " . $e->getMessage();
-        }
-    } else {
-        echo "<script>alert('Please enter a valid note ID.');</script>";
-    }
-}
 ?>
