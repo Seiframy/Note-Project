@@ -70,7 +70,7 @@ try {
     <!-- Note-taking Section -->
     <div class="container my-5">
         <div class="row">
-            <!-- LEFT COLUMN: Add & Search Notes -->
+            <!-- LEFT COLUMN: Add Note Form -->
             <div class="col-md-6">
                 <h2 class="text-center">Take a Note</h2>
                 <form method="post">
@@ -80,30 +80,29 @@ try {
                     </div>
                     <div class="form-group">
                         <label for="noteContent">Note Content</label>
-                        <textarea class="form-control" id="content" name="content" rows="6"
-                            placeholder="Write your note here..." required></textarea>
+                        <textarea class="form-control" id="content" name="content" rows="6" placeholder="Write your note here..." required></textarea>
                     </div>
                     <button type="submit" name="create_note" class="btn btn-primary">Create Note</button>
-                </form>
-
-                <hr>
-                <h3 class="text-center">Search Your Notes</h3>
-                <form action="../php/search_notes2.php" method="POST" class="mb-3">
-                    <input type="text" name="search_query" class="form-control" placeholder="Search your notes..." required />
-                    <button type="submit" name="search_notes" class="btn btn-info mt-2">Search</button>
                 </form>
             </div>
 
             <!-- RIGHT COLUMN: Display All Notes -->
             <div class="col-md-6">
                 <h3 class="text-center">All Notes</h3>
-
                 <?php if (!empty($notes)): ?>
                     <?php foreach ($notes as $note): ?>
                         <div class="card pink-card mb-3 shadow-sm">
                             <div class="card-body">
                                 <h5 class="card-title"><?php echo htmlspecialchars($note['title']); ?></h5>
                                 <p class="card-text"><?php echo htmlspecialchars($note['content']); ?></p>
+
+                                <!-- Edit/Delete buttons -->
+                                <form method="post" action="../php/note_edit_or_delete.php" style="display:inline-block;">
+                                    <input type="hidden" name="id" value="<?php echo $note['id']; ?>">
+                                    <button type="submit" name="edit" class="btn btn-sm btn-light">✏</button>
+                                    <button type="submit" name="delete" class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Are you sure you want to delete this note?');">🗑</button>
+                                </form>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -113,6 +112,7 @@ try {
             </div>
         </div>
     </div>
+
 
     <!-- Link to external JavaScript file -->
     <script src="../js/note_script.js"></script>

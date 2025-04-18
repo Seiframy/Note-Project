@@ -28,19 +28,15 @@ body {
 /* === CARDS === */
 .pink-card {
     background-color: #fdd8e8;
-    /* soft pink card */
     border: 1px solid #f7a8c4;
     border-radius: 10px;
     padding: 20px;
     color: #d63384;
-    /* text inside cards */
-    /*make size smaller*/
-    max-width: 400px;
-    margin: 0 auto;
-    /*first card centered on the right, second card centerd on the left*/
-    margin-top: 20px;
-    margin-bottom: 20px;
+    /* Removed max-width and auto-centering for layout to work */
 }
+
+
+
 
 /* === INDEX PAGE CARD LAYOUT === */
 .card-wrapper {
