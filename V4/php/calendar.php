@@ -1,3 +1,18 @@
+<?php
+require_once "../php/dp.php";
+
+// Fetch all events from the DB
+$events = [];
+
+try {
+    $stmt = $pdo->query("SELECT * FROM calendar_events");
+    $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    echo "Error fetching events: " . $e->getMessage();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,58 +79,38 @@
             <div class="day-cell empty"></div>
             <div class="day-cell empty"></div>
 
-            <!-- Actual days -->
-            <div class="day-cell">1</div>
-            <div class="day-cell">2</div>
-            <div class="day-cell">3</div>
-            <div class="day-cell">4</div>
-            <div class="day-cell">5</div>
-            <div class="day-cell">6</div>
-            <div class="day-cell">7</div>
-            <div class="day-cell">8</div>
-            <div class="day-cell">9</div>
-            <div class="day-cell">10</div>
-            <div class="day-cell">11</div>
-            <div class="day-cell">12</div>
-            <div class="day-cell">13</div>
-            <div class="day-cell">14</div>
-            <div class="day-cell">15</div>
-            <div class="day-cell">16</div>
-            <div class="day-cell">17</div>
-            <div class="day-cell">18</div>
-            <div class="day-cell">19</div>
-            <div class="day-cell">20</div>
-            <div class="day-cell">21</div>
-            <div class="day-cell">22</div>
-            <div class="day-cell">23</div>
-            <div class="day-cell">24</div>
-            <div class="day-cell">25</div>
-            <div class="day-cell">26</div>
-            <div class="day-cell">27</div>
-            <div class="day-cell">28</div>
-            <div class="day-cell">29</div>
-            <div class="day-cell">30</div>
-        </div>
-
-        <!-- Add Event Form -->
-        <div class="mt-5">
-            <h3 class="text-center mb-3">Add Event</h3>
-            <form action="../php/save_event.php" method="post" class="card p-4 shadow pink-card">
-                <div class="form-group">
-                    <label for="title">Event Title</label>
-                    <input type="text" name="title" id="title" class="form-control" required>
+            <!-- Actual days 1 - 30 -->
+            <?php for ($i = 1; $i <= 30; $i++): ?>
+                <div class="day-cell">
+                    <?php echo $i; ?>
+                    <?php foreach ($events as $event): ?>
+                        <?php if ($event['day'] == $i): ?>
+                            <div class="event-title"><?php echo htmlspecialchars($event['title']); ?></div>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
+            <?php endfor; ?>
 
-                <div class="form-group mt-3">
-                    <label for="day">Day of Month</label>
-                    <input type="number" name="day" id="day" class="form-control" min="1" max="30" required>
-                </div>
 
-                <button type="submit" name="create_event" class="btn btn-pink mt-3">Add Event</button>
-            </form>
+            <!-- Add Event Form -->
+            <div class="mt-5">
+                <h3 class="text-center mb-3">Add Event</h3>
+                <form action="../php/save_event.php" method="post" class="card p-4 shadow pink-card">
+                    <div class="form-group">
+                        <label for="title">Event Title</label>
+                        <input type="text" name="title" id="title" class="form-control" required>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="day">Day of Month</label>
+                        <input type="number" name="day" id="day" class="form-control" min="1" max="30" required>
+                    </div>
+
+                    <button type="submit" name="create_event" class="btn btn-pink mt-3">Add Event</button>
+                </form>
+            </div>
+
         </div>
-
-    </div>
 
 </body>
 

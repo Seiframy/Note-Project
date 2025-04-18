@@ -23,16 +23,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_event"])) {
 
             // Execute and check
             if ($stmt->execute()) {
-                echo "<script>alert('Event added successfully!'); window.location.href = '../html/calendar.html';</script>";
+                echo "<script>alert('Event added successfully!'); window.location.href = '../php/calendar.php';</script>";
             } else {
-                echo "<script>alert('Failed to add event.'); window.location.href = '../html/calendar.html';</script>";
+                echo "<script>alert('Failed to add event.'); window.location.href = '../php/calendar.php';</script>";
             }
         } catch (PDOException $e) {
             echo "Database Error: " . $e->getMessage();
         }
     } else {
-        echo "<script>alert('Please fill in all fields with valid data.'); window.location.href = '../html/calendar.html';</script>";
+        echo "<script>alert('Please fill in all fields with valid data.'); window.location.href = '../php/calendar.php';</script>";
     }
 } else {
-    echo "<script>alert('Invalid request.'); window.location.href = '../html/calendar.html';</script>";
+    echo "<script>alert('Invalid request.'); window.location.href = '../php/calendar.php';</script>";
 }

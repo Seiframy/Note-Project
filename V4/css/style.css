@@ -139,3 +139,13 @@ a:hover {
     margin-top: 3rem !important;
     margin-bottom: 3rem !important;
 }
+
+.event-title {
+    background-color: #d63384;
+    color: white;
+    font-size: 0.85rem;
+    padding: 4px 8px;
+    margin-top: 5px;
+    border-radius: 6px;
+    text-align: center;
+}
