@@ -122,8 +122,8 @@ $firstDayOfMonth = date('w', strtotime("$year-$month-01"));
                                         echo htmlspecialchars($event['title']);
                                         echo "<form method='post' action='../php/edit_or_delete.php' style='display:inline-block; margin-left:5px;'>";
                                         echo "<input type='hidden' name='id' value='" . $event['id'] . "'>";
-                                        echo "<button type='submit' name='edit' class='btn btn-sm btn-light'>Edit</button>";
-                                        echo "<button type='submit' name='delete' class='btn btn-sm btn-danger'>Delet</button>";
+                                        echo "<button type='submit' name='edit' class='btn btn-sm btn-light'>E</button>";
+                                        echo "<button type='submit' name='D' class='btn btn-sm btn-danger' onclick=\"return confirm('Are you sure you want to delete this event?');\">D</button>";
                                         echo "</form>";
                                         echo "</span>";
                                     }
