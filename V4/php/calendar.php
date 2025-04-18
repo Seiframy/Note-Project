@@ -12,6 +12,25 @@ try {
 }
 ?>
 
+<?php
+// Get current month and year
+$currentMonth = date('F'); // e.g., "April"
+$currentYear = date('Y');  // e.g., "2025"
+$currentDay = date('j'); // e.g., "15"
+?>
+
+<?php
+$month = date('n'); // 1 = January, 4 = April
+$year = date('Y');
+
+// Get total days in current month
+$totalDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
+
+// Get the weekday of the first day of the month (0 = Sunday, 6 = Saturday)
+$firstDayOfMonth = date('w', strtotime("$year-$month-01"));
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,33 +82,68 @@ try {
     <!-- Main Content -->
     <div class="container my-5">
 
-        <h2 class="text-center mb-4">April 2025</h2>
+        <h2 class="text-center mb-4"><?php echo $currentMonth . " " . $currentDay . " " . $currentYear; ?></h2>
+
 
         <!-- Calendar Grid -->
         <div class="calendar-grid">
-            <div class="day-name">Sun</div>
-            <div class="day-name">Mon</div>
-            <div class="day-name">Tue</div>
-            <div class="day-name">Wed</div>
-            <div class="day-name">Thu</div>
-            <div class="day-name">Fri</div>
-            <div class="day-name">Sat</div>
+            <table class="table table-bordered text-center">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $day = 1;
+                    $currentCell = 0;
 
-            <!-- Blank days before the 1st -->
-            <div class="day-cell empty"></div>
-            <div class="day-cell empty"></div>
+                    // We create rows while days are still available
+                    for ($row = 0; $day <= $totalDays; $row++) {
+                        echo "<tr>";
+                        for ($col = 0; $col < 7; $col++) {
+                            if ($row == 0 && $col < $firstDayOfMonth) {
+                                // Print empty cells before the first day
+                                echo "<td></td>";
+                            } elseif ($day <= $totalDays) {
+                                echo "<td>";
+                                echo $day;
 
-            <!-- Actual days 1 - 30 -->
-            <?php for ($i = 1; $i <= 30; $i++): ?>
-                <div class="day-cell">
-                    <?php echo $i; ?>
-                    <?php foreach ($events as $event): ?>
-                        <?php if ($event['day'] == $i): ?>
-                            <div class="event-title"><?php echo htmlspecialchars($event['title']); ?></div>
-                        <?php endif; ?>
-                    <?php endforeach; ?>
-                </div>
-            <?php endfor; ?>
+                                // Display all events that match this day
+                                foreach ($events as $event) {
+                                    if ($event['day'] == $day) {
+                                        echo "<span class='event-span'>";
+                                        echo htmlspecialchars($event['title']);
+                                        echo "<form method='post' action='../php/edit_or_delete.php' style='display:inline-block; margin-left:5px;'>";
+                                        echo "<input type='hidden' name='id' value='" . $event['id'] . "'>";
+                                        echo "<button type='submit' name='edit' class='btn btn-sm btn-light'>Edit</button>";
+                                        echo "<button type='submit' name='delete' class='btn btn-sm btn-danger'>Delet</button>";
+                                        echo "</form>";
+                                        echo "</span>";
+                                    }
+                                }
+
+
+                                echo "</td>";
+
+                                $day++;
+                            } else {
+                                echo "<td></td>"; // empty cells after last day
+                            }
+                            $currentCell++;
+                        }
+                        echo "</tr>";
+                    }
+                    ?>
+                </tbody>
+            </table>
+
 
 
             <!-- Add Event Form -->

@@ -149,3 +149,33 @@ a:hover {
     border-radius: 6px;
     text-align: center;
 }
+
+.event-span {
+    display: block;
+    background-color: #d63384;
+    color: white;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+.event-span {
+    display: block;
+    background-color: #d63384;
+    color: white;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 6px;
+    text-align: left;
+}
+
+.event-span form {
+    margin-top: 5px;
+}
+
+.event-span .btn {
+    padding: 2px 6px;
+    font-size: 0.7rem;
+}
