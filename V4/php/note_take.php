@@ -61,14 +61,14 @@ try {
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light pink-navbar">
-        <a class="navbar-brand" href="../html/index.html">Note Taking Website</a>
+        <a class="navbar-brand" href="../index.html">Note Taking Website</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="../html/index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="../php/calendar.php">Calendar</a></li>
                 <li class="nav-item"><a class="nav-link" href="../php/logout.php">Log out</a></li>
             </ul>

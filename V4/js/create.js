@@ -30,7 +30,7 @@ document.getElementById("registration_").addEventListener("submit", function (e)
             console.log("Response from PHP:", data);
             if (data.success) {
                 alert("Data sent successfully! " + data.message);
-                window.location.href = "../html/index.html"; // Optional redirect
+                window.location.href = "../index.html"; // Optional redirect
             } else {
                 alert("Error: " + data.message);
             }

@@ -67,7 +67,7 @@ $firstDayOfMonth = date('w', strtotime("$year-$month-01"));
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light pink-navbar">
-        <a class="navbar-brand" href="../html/index.html">Note Taking Website</a>
+        <a class="navbar-brand" href="../index.html">Note Taking Website</a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav" title="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

@@ -18,7 +18,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         const data = await res.json();
 
         if (data.success) {
-            window.location.href = "../html/index.html";
+            window.location.href = "../index.html";
         } else {
             document.getElementById("errorMessage").textContent = data.message;
             console.warn("Login failed:", data.message);
