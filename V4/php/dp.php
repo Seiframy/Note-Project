@@ -13,7 +13,8 @@ ini_set('display_errors', 1);   // show errors
 $host = "sqlXXX.infinityfree.com"; // use your real host name
 $dbname = "epiz_12345678_mydb";   // your real DB name
 $username = "epiz_12345678";      // your real username
-$password = "yourHostingPassword";
+$password = "Blush12345";
+$port = 3306; // default MySQL port
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
