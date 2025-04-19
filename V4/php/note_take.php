@@ -1,9 +1,9 @@
 <?php
-require_once "session_check.php";
-require_once "dp.php";
 
+require_once __DIR__ . '/session_check.php';  // guard AND $user_id
+require_once __DIR__ . '/dp.php';             // DB connection
 
-$user_id = $_SESSION['user_id'];
+// Now you’re safe to use $pdo and $user_id
 
 
 // Handle note creation (in this file, not redirecting)
@@ -69,8 +69,8 @@ try {
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="../php/calendar.php">Calendar</a></li>
-                <li class="nav-item"><a class="nav-link" href="../php/logout.php">Log out</a></li>
+                <li class="nav-item"><a class="nav-link" href="/php/calendar.php">Calendar</a></li>
+                <li class="nav-item"><a class="nav-link" href="/php/logout.php">Log out</a></li>
             </ul>
         </div>
     </nav>
@@ -105,7 +105,7 @@ try {
                                 <p class="card-text"><?php echo htmlspecialchars($note['content']); ?></p>
 
                                 <!-- Edit/Delete buttons -->
-                                <form method="post" action="../php/note_edit_or_delete.php" style="display:inline-block;">
+                                <form method="post" action="/php/note_edit_or_delete.php" style="display:inline-block;">
                                     <input type="hidden" name="id" value="<?php echo $note['id']; ?>">
                                     <button type="submit" name="edit" class="btn btn-sm btn-light">✏</button>
                                     <button type="submit" name="delete" class="btn btn-sm btn-danger"

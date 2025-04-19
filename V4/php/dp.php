@@ -1,4 +1,15 @@
 <?php
+
+// Put this ONCE in dp.php  (or a config file loaded everywhere)
+error_reporting(E_ALL);
+
+/* ‑‑‑ While TESTING ‑‑‑ */
+ini_set('display_errors', 1);   // show errors
+
+/* ‑‑‑ When you go LIVE for real users ‑‑‑ */
+// ini_set('display_errors', 0); // hide errors
+
+
 $host = "sqlXXX.infinityfree.com"; // use your real host name
 $dbname = "epiz_12345678_mydb";   // your real DB name
 $username = "epiz_12345678";      // your real username

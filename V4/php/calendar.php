@@ -1,10 +1,10 @@
 <?php
 
-require_once "session_check.php";
-require_once "dp.php";
+require_once __DIR__ . '/session_check.php';  // guard AND $user_id
+require_once __DIR__ . '/dp.php';             // DB connection
 
+// Now you’re safe to use $pdo and $user_id
 
-$user_id = $_SESSION['user_id'];
 
 
 
@@ -75,13 +75,13 @@ $firstDayOfMonth = date('w', strtotime("$year-$month-01"));
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="../php/note_take.php">Note Taking</a>
+                    <a class="nav-link" href="/php/note_take.php">Note Taking</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../html/calendar.html">Calendar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../php/logout.php"
+                    <a class="nav-link" href="/php/logout.php"
                         onclick="return confirm('Are you sure you want to log out?')">
                         Log out
                     </a>
@@ -131,7 +131,7 @@ $firstDayOfMonth = date('w', strtotime("$year-$month-01"));
                                     if ($event['day'] == $day) {
                                         echo "<span class='event-span'>";
                                         echo htmlspecialchars($event['title']);
-                                        echo "<form method='post' action='../php/edit_or_delete.php' style='display:inline-block; margin-left:5px;'>";
+                                        echo "<form method='post' action='/php/edit_or_delete.php' style='display:inline-block; margin-left:5px;'>";
                                         echo "<input type='hidden' name='id' value='" . $event['id'] . "'>";
                                         echo "<button type='submit' name='edit' class='btn btn-sm btn-light'>E</button>";
                                         echo "<button type='submit' name='D' class='btn btn-sm btn-danger' onclick=\"return confirm('Are you sure you want to delete this event?');\">D</button>";
@@ -160,7 +160,7 @@ $firstDayOfMonth = date('w', strtotime("$year-$month-01"));
             <!-- Add Event Form -->
             <div class="mt-5">
                 <h3 class="text-center mb-3">Add Event</h3>
-                <form action="../php/save_event.php" method="post" class="card p-4 shadow pink-card">
+                <form action="/php/save_event.php" method="post" class="card p-4 shadow pink-card">
                     <div class="form-group">
                         <label for="title">Event Title</label>
                         <input type="text" name="title" id="title" class="form-control" required>

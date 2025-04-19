@@ -1,12 +1,9 @@
 <?php
-// Include your database connection
-require_once "dp.php";
 
-session_start(); // Make sure this is at the top
+require_once __DIR__ . '/session_check.php';  // guard AND $user_id
+require_once __DIR__ . '/dp.php';             // DB connection
 
-// Show errors while testing (you can turn these off later)
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+// Now you’re safe to use $pdo and $user_id
 
 // Check if the form was submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_event"])) {
@@ -26,16 +23,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_event"])) {
 
             // Execute and check
             if ($stmt->execute()) {
-                echo "<script>alert('Event added successfully!'); window.location.href = '../php/calendar.php';</script>";
+                echo "<script>alert('Event added successfully!'); window.location.href = '/php/calendar.php';</script>";
             } else {
-                echo "<script>alert('Failed to add event.'); window.location.href = '../php/calendar.php';</script>";
+                echo "<script>alert('Failed to add event.'); window.location.href = '/php/calendar.php';</script>";
             }
         } catch (PDOException $e) {
             echo "Database Error: " . $e->getMessage();
         }
     } else {
-        echo "<script>alert('Please fill in all fields with valid data.'); window.location.href = '../php/calendar.php';</script>";
+        echo "<script>alert('Please fill in all fields with valid data.'); window.location.href = '/php/calendar.php';</script>";
     }
 } else {
-    echo "<script>alert('Invalid request.'); window.location.href = '../php/calendar.php';</script>";
+    echo "<script>alert('Invalid request.'); window.location.href = '/php/calendar.php';</script>";
 }

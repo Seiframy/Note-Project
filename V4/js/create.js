@@ -18,7 +18,7 @@ document.getElementById("registration_").addEventListener("submit", function (e)
     };
 
     // Send to PHP backend
-    fetch("../php/process.php", {
+    fetch("/php/process.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

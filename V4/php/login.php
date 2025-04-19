@@ -1,10 +1,17 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
+/* 1. Start the session first (no output has been sent yet) */
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+/* 2. Tell the browser we’ll return JSON */
 header("Content-Type: application/json");
-require_once('dp.php'); // defines $pdo
-session_start();
+
+/* 3. Bring in the DB connection */
+require_once __DIR__ . '/dp.php';
+
+/* Now you’re safe to use $_SESSION and $pdo */
 
 // Debug: Log raw input
 $json = file_get_contents("php://input");

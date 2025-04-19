@@ -1,7 +1,9 @@
 <?php
-require_once "dp.php";
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+
+require_once __DIR__ . '/session_check.php';  // guard AND $user_id
+require_once __DIR__ . '/dp.php';             // DB connection
+
+// Now you’re safe to use $pdo and $user_id
 
 // Handle DELETE
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['D'])) {
@@ -11,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['D'])) {
         $stmt = $pdo->prepare("DELETE FROM calendar_events WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        echo "<script>alert('Event deleted.'); window.location.href = '../php/calendar.php';</script>";
+        echo "<script>alert('Event deleted.'); window.location.href = '/php/calendar.php';</script>";
     } catch (PDOException $e) {
         echo "Error deleting: " . $e->getMessage();
     }

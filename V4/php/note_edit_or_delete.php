@@ -1,9 +1,11 @@
 <?php
-require_once "session_check.php";
-require_once "dp.php";
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+require_once __DIR__ . '/session_check.php';  // guard AND $user_id
+require_once __DIR__ . '/dp.php';             // DB connection
+
+// Now you’re safe to use $pdo and $user_id
+
+
 
 // 🗑 Handle Delete
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
@@ -12,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete"])) {
         $stmt = $pdo->prepare("DELETE FROM notes_taking WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        echo "<script>alert('Note deleted successfully.'); window.location.href = '../php/note_take.php';</script>";
+        echo "<script>alert('Note deleted successfully.'); window.location.href = '/php/note_take.php';</script>";
         exit;
     } catch (PDOException $e) {
         echo "Error deleting note: " . $e->getMessage();
@@ -48,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit"])) {
     <div class="container my-5">
         <?php if (isset($note)): ?>
             <h3 class="text-center mb-4">Edit Note</h3>
-            <form method="post" action="note_update.php" class="card p-4 pink-card shadow">
+            <form method="post" action="/php/note_update.php" class="card p-4 pink-card shadow">
                 <input type="hidden" name="id" value="<?php echo $note['id']; ?>">
                 <div class="form-group">
                     <label for="title">Note Title</label>
@@ -65,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit"])) {
         <?php else: ?>
             <p class="text-center text-danger">Note not found. Please go back.</p>
             <div class="text-center mt-3">
-                <a href="../php/note_take.php" class="btn btn-secondary">Back to Notes</a>
+                <a href="/php/note_take.php" class="btn btn-secondary">Back to Notes</a>
             </div>
         <?php endif; ?>
     </div>
