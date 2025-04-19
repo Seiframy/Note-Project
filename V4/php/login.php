@@ -34,10 +34,10 @@ try {
         $_SESSION['user'] = $username; // Optional, keep for reference
 
 
-        file_put_contents("debug_log.txt", "Login success for user: $username\n", FILE_APPEND);
+        
         echo json_encode(["success" => true]);
     } else {
-        file_put_contents("debug_log.txt", "Login failed for user: $username\n", FILE_APPEND);
+        
         echo json_encode(["success" => false, "message" => "Invalid username or password"]);
     }
 } catch (PDOException $e) {
