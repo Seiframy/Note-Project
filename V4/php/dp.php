@@ -1,16 +1,13 @@
 <?php
-$host = "127.0.0.1";
-$dbname = "notes_app";
-$username = "root";
-$password = "1166";
-$port = "3307";
+$host = "sqlXXX.infinityfree.com"; // use your real host name
+$dbname = "epiz_12345678_mydb";   // your real DB name
+$username = "epiz_12345678";      // your real username
+$password = "yourHostingPassword";
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8;port=$port", $username, $password);
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    http_response_code(500);
-    echo json_encode(["success" => false, "message" => "Connection failed: " . $e->getMessage()]);
-    exit;
+    die("Connection failed: " . $e->getMessage());
 }
 ?>
