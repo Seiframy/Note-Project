@@ -1,10 +1,12 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+
 header("Content-Type: application/json");
 
-require_once('dp.php'); // Include database connection (make sure this is correct)
-session_start();
+
+require_once __DIR__ . '/session_check.php';  // guard AND $user_id
+require_once __DIR__ . '/dp.php';             // DB connection
+
+// Now you’re safe to use $pdo and $user_id
 
 // Read the JSON input
 $json = file_get_contents("php://input");

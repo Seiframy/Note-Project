@@ -1,0 +1,182 @@
+/* === GLOBAL STYLES === */
+body {
+    background-color: #ffe6f0;
+    /* light pink background */
+    font-family: Arial, sans-serif;
+    color: #d63384;
+    /* default text is white */
+}
+
+/* === PINK NAVBAR === */
+.pink-navbar {
+    background-color: #f8c8dc;
+    /* Light pink navbar */
+    border-bottom: 2px solid #f7a8c4;
+}
+
+.pink-navbar .navbar-brand,
+.pink-navbar .nav-link {
+    color: white !important;
+    font-weight: bold;
+}
+
+.pink-navbar .nav-link:hover {
+    color: #fffafc !important;
+    text-decoration: underline;
+}
+
+/* === CARDS === */
+.pink-card {
+    background-color: #fdd8e8;
+    border: 1px solid #f7a8c4;
+    border-radius: 10px;
+    padding: 20px;
+    color: #d63384;
+    /* Removed max-width and auto-centering for layout to work */
+}
+
+
+
+
+/* === INDEX PAGE CARD LAYOUT === */
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+    /* center the two cards horizontally */
+    gap: 1rem;
+    /* space between the two cards */
+    flex-direction: row-reverse;
+    /* this makes first card appear on the right */
+    flex-wrap: wrap;
+    /* allows wrap on small screens */
+}
+
+.card-wrapper .card {
+    width: 300px;
+    /* fixed width for consistency */
+    min-height: 350px;
+    /* optional: same height for both cards */
+}
+
+
+/* === BUTTONS === */
+.btn-pink {
+    background-color: #d63384;
+    /* darker pink/purple */
+    color: white;
+    border: none;
+}
+
+.btn-pink:hover {
+    background-color: #a01f61;
+    color: white;
+}
+
+/* === HEADINGS === */
+h1,
+h2,
+h3,
+h5 {
+    color: #d63384;
+    /* dark pink / purple */
+}
+
+/* === FORM INPUTS === */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+textarea {
+    border-radius: 5px;
+    border: 1px solid #f7a8c4;
+    background-color: #fff0f7;
+    color: #333;
+    /* input text should be dark for readability */
+}
+
+/* === FORM CONTAINERS === */
+form.card {
+    background-color: #fdd8e8;
+    border: 1px solid #f7a8c4;
+    border-radius: 10px;
+    color: white;
+}
+
+/* === LINKS === */
+a {
+    color: #d63384;
+}
+
+a:hover {
+    color: #a01f61;
+    text-decoration: none;
+}
+
+/* === ERROR MESSAGES === */
+.errorMessage {
+    color: #ffb3b3;
+    font-size: 0.9rem;
+}
+
+/* === SPACING + ALIGNMENT === */
+.text-center {
+    text-align: center;
+}
+
+.mt-4 {
+    margin-top: 1.5rem !important;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem !important;
+}
+
+.my-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+}
+
+.event-title {
+    background-color: #d63384;
+    color: white;
+    font-size: 0.85rem;
+    padding: 4px 8px;
+    margin-top: 5px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.event-span {
+    display: block;
+    background-color: #d63384;
+    color: white;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+.event-span {
+    display: block;
+    background-color: #d63384;
+    color: white;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 6px;
+    text-align: left;
+}
+
+.event-span form {
+    margin-top: 5px;
+}
+
+.event-span .btn {
+    padding: 2px 6px;
+    font-size: 0.7rem;
+}
+
+.card.pink-card {
+    background-color: #fff0f6;
+    border: 1px solid #f7a8c4;
+}

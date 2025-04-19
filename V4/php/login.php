@@ -1,10 +1,17 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
+/* 1. Start the session first (no output has been sent yet) */
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+/* 2. Tell the browser we’ll return JSON */
 header("Content-Type: application/json");
-require_once('dp.php'); // defines $pdo
-session_start();
+
+/* 3. Bring in the DB connection */
+require_once __DIR__ . '/dp.php';
+
+/* Now you’re safe to use $_SESSION and $pdo */
 
 // Debug: Log raw input
 $json = file_get_contents("php://input");
@@ -24,18 +31,20 @@ $password = $data['password'] ?? '';
 
 try {
     $stmt = $pdo->prepare("SELECT * FROM users_new WHERE username = ?");
-    $stmt->execute([$username]);  
+    $stmt->execute([$username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['password'])) {
         // Set cookie and session
         setcookie("user", $username, time() + 3600, "/"); // 1 hour
-        $_SESSION['user'] = $username;
+        $_SESSION['user_id'] = $user['id']; // Store the actual user ID
+        $_SESSION['user'] = $username; // Optional, keep for reference
 
-        file_put_contents("debug_log.txt", "Login success for user: $username\n", FILE_APPEND);
+
+        
         echo json_encode(["success" => true]);
     } else {
-        file_put_contents("debug_log.txt", "Login failed for user: $username\n", FILE_APPEND);
+        
         echo json_encode(["success" => false, "message" => "Invalid username or password"]);
     }
 } catch (PDOException $e) {

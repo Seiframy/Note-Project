@@ -10,6 +10,6 @@ session_destroy();
 setcookie("user", "", time() - 3600, "/");
 
 // Redirect to login or landing page
-header("Location: ../html/form.html"); // or wherever your login form is
+header("Location: /html/form.html"); // or wherever your login form is
 exit;
 ?>

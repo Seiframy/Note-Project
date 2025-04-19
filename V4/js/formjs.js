@@ -5,7 +5,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     const password = document.getElementById("password").value.trim();
 
     try {
-        const res = await fetch("../php/login.php", {
+        const res = await fetch("/php/login.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password }),
@@ -18,7 +18,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         const data = await res.json();
 
         if (data.success) {
-            window.location.href = "../html/index.html";
+            window.location.href = "../index.html";
         } else {
             document.getElementById("errorMessage").textContent = data.message;
             console.warn("Login failed:", data.message);
